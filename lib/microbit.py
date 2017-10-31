@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
+
 def panic():
     """
     Put micro:bit in panic() mode and display an unhappy face.
