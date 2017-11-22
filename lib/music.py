@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from .microbit import pin0
+from microbit import pin0
 
 
 def set_tempo(number, bpm):

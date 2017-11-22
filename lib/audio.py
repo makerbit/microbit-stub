@@ -1,6 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 
-from .microbit import pin0, pin1
+from microbit import pin0, pin1
 
 
 def play(source, wait=True, pins=(pin0, pin1)):
