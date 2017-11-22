@@ -2,7 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 
-def translate(words):
+def translate(words: str) -> str:
     """
     Return a string containing the phonemes for the English words in the
     string 'words'.
@@ -10,7 +10,13 @@ def translate(words):
     pass
 
 
-def say(words, pitch=64, speed=72, mouth=128, throat=128):
+def say(
+    words: str,
+    pitch: int = 64,
+    speed: int = 72,
+    mouth: int = 128,
+    throat: int = 128,
+) -> None:
     """
     Say the English words in the string 'words'.
     Override the optional pitch, speed, mouth and throat settings to change
@@ -19,7 +25,13 @@ def say(words, pitch=64, speed=72, mouth=128, throat=128):
     pass
 
 
-def pronounce(phonemes, pitch=64, speed=72, mouth=128, throat=128):
+def pronounce(
+    phonemes: str,
+    pitch: int = 64,
+    speed: int = 72,
+    mouth: int = 128,
+    throat: int = 128,
+) -> None:
     """
     Pronounce the phonemes in the string 'phonemes'.
     Override the optional pitch, speed, mouth and throat settings to change
@@ -28,7 +40,13 @@ def pronounce(phonemes, pitch=64, speed=72, mouth=128, throat=128):
     pass
 
 
-def sing(song, pitch=64, speed=72, mouth=128, throat=128):
+def sing(
+    song: str,
+    pitch: int = 64,
+    speed: int = 72,
+    mouth: int = 128,
+    throat: int = 128,
+) -> None:
     """
     Sing the phonemes in the string 'song'.
     Add pitch information to a phoneme with a hash followed by a number

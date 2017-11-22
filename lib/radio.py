@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-RATE_250KBIT = 250000
-RATE_1MBIT = 1e+6
-RATE_2MBIT = 2e+6
+from typing import NewType, Optional
 
 
-def on():
+_Rate = NewType("_Rate", int)
+
+RATE_250KBIT = _Rate(250000)
+RATE_1MBIT = _Rate(int(1e+6))
+RATE_2MBIT = _Rate(int(2e+6))
+
+
+def on() -> None:
     """
     Turns on the radio. This needs to be called since the radio draws power
     and takes up memory that you may otherwise need.
@@ -14,7 +19,7 @@ def on():
     pass
 
 
-def off():
+def off() -> None:
     """
     Turns off the radio, thus saving power and memory.
     """
@@ -22,14 +27,14 @@ def off():
 
 
 def config(
-    length=32,
-    queue=3,
-    channel=7,
-    power=0,
-    address=0x75626974,
-    group=0,
-    data_rate=RATE_1MBIT,
-):
+    length: int = 32,
+    queue: int = 3,
+    channel: int = 7,
+    power: int = 0,
+    address: int = 0x75626974,
+    group: int = 0,
+    data_rate: _Rate = RATE_1MBIT,
+) -> None:
     """
     Configures the various settings relating to the radio.
     The specified default values are sensible.
@@ -47,21 +52,21 @@ def config(
     pass
 
 
-def reset():
+def reset() -> None:
     """
     Reset the settings to their default value.
     """
     pass
 
 
-def send_bytes(message):
+def send_bytes(message: bytes) -> None:
     """
     Sends a message containing bytes.
     """
     pass
 
 
-def receive_bytes():
+def receive_bytes() -> Optional[bytes]:
     """
     Receive the next incoming message from the message queue.
     Returns 'None' if there are no pending messages.
@@ -70,14 +75,14 @@ def receive_bytes():
     pass
 
 
-def send(message):
+def send(message: str) -> None:
     """
     Send a message string.
     """
     pass
 
 
-def receive():
+def receive() -> Optional[str]:
     """
     Receive the next incoming message from the message queue as a string.
     Returns 'None' if there are no pending messages.

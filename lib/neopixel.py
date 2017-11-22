@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
+from microbit import _Pin
+
 
 class NeoPixel(list):
-    def __init__(self, pin, n):
+    def __init__(self, pin: _Pin, n: int) -> None:
         """
         Create a list representing a strip of 'n' neopixels controlled from
         the specified pin (e.g. microbit.pin0).
@@ -19,13 +21,13 @@ class NeoPixel(list):
         """
         pass
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear all the pixels.
         """
         pass
 
-    def show(self):
+    def show(self) -> None:
         """
         Show the pixels. Must be called for any updates to become visible.
         """

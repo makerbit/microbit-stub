@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from typing import List  # noqa: F401
+from typing import (
+    Any,
+    List,
+    NewType,
+    Optional,
+    Union,
+)
+
+_UARTParity = NewType("_UARTParity", int)
 
 
-def panic():
+def panic() -> None:
     """
     Put micro:bit in panic() mode and display an unhappy face.
     Press the reset button to exit panic() mode.
@@ -12,7 +20,7 @@ def panic():
     pass
 
 
-def sleep(time):
+def sleep(time: int) -> None:
     """
     Put micro:bit to sleep for some milliseconds (1 second = 1000 ms) of time.
     sleep(2000) gives micro:bit a 2 second nap.
@@ -20,14 +28,14 @@ def sleep(time):
     pass
 
 
-def running_time():
+def running_time() -> int:
     """
     Return running_time() in milliseconds since micro:bit's last reset.
     """
     pass
 
 
-def temperature():
+def temperature() -> float:
     """
     Return micro:bit's temperature in degrees Celcius.
     """
@@ -36,19 +44,19 @@ def temperature():
 
 # Accelerometer 3D orientation
 class _Accelerometer(object):
-    def get_x(self):
+    def get_x(self) -> int:
         """
         Return micro:bit's tilt (X acceleration) in milli-g's.
         """
         pass
 
-    def get_y(self):
+    def get_y(self) -> int:
         """
         Return micro:bit's tilt (Y acceleration) in milli-g's.
         """
         pass
 
-    def get_z(self):
+    def get_z(self) -> int:
         """
         Return micro:bit's up-down motion (Z acceleration) in milli-g's.
         Z is a positive number when moving up. Moving down, Z is a negative
@@ -56,7 +64,7 @@ class _Accelerometer(object):
         """
         pass
 
-    def is_gesture(self, name):
+    def is_gesture(self, name: str) -> bool:
         """
         Return True or False to indicate if the named gesture is currently
         active.
@@ -66,7 +74,7 @@ class _Accelerometer(object):
         """
         pass
 
-    def was_gesture(self, name):
+    def was_gesture(self, name: str) -> bool:
         """
         Return True or False to indicate if the named gesture was active since
         the last call.
@@ -76,7 +84,7 @@ class _Accelerometer(object):
         """
         pass
 
-    def get_gestures(self):
+    def get_gestures(self) -> List[str]:
         """
         Return a list indicating the gesture history. The most recent gesture
         is last.
@@ -93,20 +101,20 @@ accelerometer = _Accelerometer()
 
 # Pushbutton
 class _Button(object):
-    def is_pressed(self):
+    def is_pressed(self) -> bool:
         """
         If the button is pressed down, is_pressed() is True, else False.
         """
         pass
 
-    def was_pressed(self):
+    def was_pressed(self) -> bool:
         """
         Use was_pressed() to learn if the button was pressed since the last
         time was_pressed() was called. Returns True or False.
         """
         pass
 
-    def get_presses(self):
+    def get_presses(self) -> int:
         """
         Use get_presses() to get the running total of button presses, and also
         reset this counter to zero.
@@ -120,7 +128,7 @@ button_b = _Button()
 
 # Compass 3D direction heading
 class _Compass(object):
-    def is_calibrated(self):
+    def is_calibrated(self) -> bool:
         """
         If micro:bit's compass is_calibrated() and adjusted for accuracy,
         return True.
@@ -128,7 +136,7 @@ class _Compass(object):
         """
         pass
 
-    def calibrate(self):
+    def calibrate(self) -> None:
         """
         If micro:bit is confused, calibrate() the compass to adjust the its
         accuracy.
@@ -137,14 +145,14 @@ class _Compass(object):
         """
         pass
 
-    def clear_calibration(self):
+    def clear_calibration(self) -> None:
         """
         Reset micro:bit's compass using clear_calibration() command.
         Run calibrate() to improve accuracy.
         """
         pass
 
-    def get_x(self):
+    def get_x(self) -> int:
         """
         Return magnetic field detected along micro:bit's X axis.
         Usually, the compass returns the earth's magnetic field in micro-Tesla
@@ -153,7 +161,7 @@ class _Compass(object):
         """
         pass
 
-    def get_y(self):
+    def get_y(self) -> int:
         """
         Return magnetic field detected along micro:bit's Y axis.
         Usually, the compass returns the earth's magnetic field in micro-Tesla
@@ -162,7 +170,7 @@ class _Compass(object):
         """
         pass
 
-    def get_z(self):
+    def get_z(self) -> int:
         """
         Return magnetic field detected along micro:bit's Z axis.
         Usually, the compass returns the earth's magnetic field in micro-Tesla
@@ -171,13 +179,13 @@ class _Compass(object):
         """
         pass
 
-    def get_field_strength(self):
+    def get_field_strength(self) -> int:
         """
         Return strength of magnetic field around micro:bit.
         """
         pass
 
-    def heading(self):
+    def heading(self) -> int:
         """
         Return a number between 0-360 indicating the device's heading. 0 is
         north.
@@ -190,7 +198,14 @@ compass = _Compass()
 
 # Display 5x5 LED grid
 class _Display(object):
-    def show(self, x, delay=400, wait=True, loop=False, clear=False):
+    def show(
+        self,
+        x: Union['Image', List['Image'], str],
+        delay: int = 400,
+        wait: bool = True,
+        loop: bool = False,
+        clear: bool = False,
+    ) -> None:
         """
         Use show(x) to print the string or image 'x' to the display. If 'x' is
         a list of images they will be animated together.
@@ -202,8 +217,14 @@ class _Display(object):
         """
         pass
 
-    def scroll(self, string, delay=150,
-               wait=True, loop=False, monospace=False):
+    def scroll(
+        self,
+        string: str,
+        delay: int = 150,
+        wait: bool = True,
+        loop: bool = False,
+        monospace: bool = False,
+    ) -> None:
         """
         Use scroll(string) to scroll the string across the display.
         Use delay to control how fast the text scrolls.
@@ -215,13 +236,13 @@ class _Display(object):
         """
         pass
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Use clear() to clear micro:bit's display.
         """
         pass
 
-    def get_pixel(self, x, y):
+    def get_pixel(self, x: int, y: int) -> int:
         """
         Use get_pixel(x, y) to return the display's brightness at LED pixel
         (x,y).
@@ -229,7 +250,7 @@ class _Display(object):
         """
         pass
 
-    def set_pixel(self, x, y, b):
+    def set_pixel(self, x: int, y: int, b: int) -> None:
         """
         Use set_pixel(x, y, b) to set the display at LED pixel (x,y) to
         brightness 'b'
@@ -237,19 +258,19 @@ class _Display(object):
         """
         pass
 
-    def on(self):
+    def on(self) -> None:
         """
         Use on() to turn on the display.
         """
         pass
 
-    def off(self):
+    def off(self) -> None:
         """
         Use off() to turn off the display.
         """
         pass
 
-    def is_on(self):
+    def is_on(self) -> bool:
         """
         Use is_on() to query if the micro:bit's display is on (True) or off
         (False).
@@ -265,13 +286,13 @@ class _Pin(object):
     """
     A standard pin
     """
-    def read_digital(self):
+    def read_digital(self) -> int:
         """
         Read the digital value of the pin. 0 for low, 1 for high
         """
         pass
 
-    def write_digital(self, value):
+    def write_digital(self, value: int) -> None:
         """
         Set the pin to output high if value is 1, or to low, it it is 0.
         """
@@ -282,7 +303,7 @@ class _AnaloguePin(_Pin):
     """
     These pins have ADC & PWM support
     """
-    def read_analog(self):
+    def read_analog(self) -> int:
         """
         Read the voltage applied to the pin.
         Returns the reading as a number between 0 (meaning 0v) and 1023
@@ -290,19 +311,19 @@ class _AnaloguePin(_Pin):
         """
         pass
 
-    def write_analog(self, value):
+    def write_analog(self, value: int) -> None:
         """
         Set the pin to output a value between 0 and 1023.
         """
         pass
 
-    def set_analog_period(self, period):
+    def set_analog_period(self, period: int) -> None:
         """
         Set the period of the PWM signal output to period milliseconds.
         """
         pass
 
-    def set_analog_period_microseconds(self, period):
+    def set_analog_period_microseconds(self, period: int) -> None:
         """
         Set the period of the PWM signal output to period microseconds.
         """
@@ -314,7 +335,7 @@ class _GiantPin(_AnaloguePin):
     These pins are aranged on the bottom of the board and have holes through
     them
     """
-    def is_touched(self):
+    def is_touched(self) -> bool:
         """
         Returns if the pin is being physically touched on the hardware
         """
@@ -348,7 +369,7 @@ pin20 = _Pin()
 
 # I2C
 class _I2C(object):
-    def read(self, address, n, repeat=False):
+    def read(self, address: int, n: int, repeat: bool = False) -> bytes:
         """
         Use read(address, n) to read 'n' bytes from the device with the 7-bit
         address.
@@ -356,7 +377,7 @@ class _I2C(object):
         """
         pass
 
-    def write(self, adress, buffer, repeat=False):
+    def write(self, adress: int, buffer: bytes, repeat: bool = False) -> None:
         """
         Use write(address, buffer) to write to the 'buffer' of the device at
         the 7-bit 'address'.
@@ -364,7 +385,7 @@ class _I2C(object):
         """
         pass
 
-    def init(self, frequency, scl, sda):
+    def init(self, frequency: int, scl: _Pin, sda: _Pin) -> None:
         """
         Use init(frequency, scl, sda) to set the bus frequency and pins.
         """
@@ -376,7 +397,7 @@ i2c = _I2C()
 
 # Image
 class Image(object):
-    def __init__(self, *args):
+    def __init__(self, *args: Any) -> None:
         """
         There are three ways to construct an image
         First, with a string:
@@ -404,19 +425,19 @@ class Image(object):
             This would create the heart image from the first method.
         """
 
-    def width(self):
+    def width(self) -> int:
         """
         Return the width of the image in pixels.
         """
         pass
 
-    def height(self):
+    def height(self) -> int:
         """
         Return the height of the image in pixels.
         """
         pass
 
-    def get_pixel(self, x, y):
+    def get_pixel(self, x: int, y: int) -> int:
         """
         Use get_pixel(x, y) to return the image's brightness at LED pixel
         (x,y).
@@ -424,47 +445,47 @@ class Image(object):
         """
         pass
 
-    def set_pixel(self, x, y, b):
+    def set_pixel(self, x: int, y: int, b: int) -> None:
         """
         Use set_pixel(x, y, b) to set the LED pixel (x,y) in the image to
         brightness 'b' which can be set between 0 (off) to 9 (full brightness).
         """
         pass
 
-    def shift_left(self, n):
+    def shift_left(self, n: int) -> 'Image':
         """
         Use shift_left(n) to make a copy of the image but moved 'n' pixels to
         the left.
         """
         pass
 
-    def shift_right(self, n):
+    def shift_right(self, n: int) -> 'Image':
         """
         Use shift_right(n) to make a copy of the image but moved 'n' pixels to
         the right.
         """
         pass
 
-    def shift_up(self, n):
+    def shift_up(self, n: int) -> 'Image':
         """
         Use shift_up(n) to make a copy of the image but moved 'n' pixels up.
         """
         pass
 
-    def shift_down(self, n):
+    def shift_down(self, n: int) -> 'Image':
         """
         Use shift_down(n) to make a copy of the image but moved 'n' pixels
         down.
         """
         pass
 
-    def copy(self):
+    def copy(self) -> 'Image':
         """
         Use copy() to make a new exact copy of the image.
         """
         pass
 
-    def crop(self, x1, y1, x2, y2):
+    def crop(self, x1: int, y1: int, x2: int, y2: int) -> 'Image':
         """
         Use crop(x1, y1, x2, y2) to make a cut-out copy of the image where
         coordinate (x1,y1) is the top left corner of the cut-out area and
@@ -472,7 +493,7 @@ class Image(object):
         """
         pass
 
-    def invert(self):
+    def invert(self) -> 'Image':
         """
         Use invert() to make a negative copy of the image. Where a pixel was
         bright or on in the original, it is dim or off in the negative copy.
@@ -548,15 +569,25 @@ class Image(object):
 
 # uart
 class _UARTSerial(object):
-    def init(self, baudrate=9600, bits=8, parity=None,
-             stop=1, tx=None, rx=None):
+    ODD = _UARTParity(1)
+    EVEN = _UARTParity(0)
+
+    def init(
+        self,
+        baudrate: int = 9600,
+        bits: int = 8,
+        parity: Optional[_UARTParity] = None,
+        stop: int = 1,
+        tx: Optional[_Pin] = None,
+        rx: Optional[_Pin] = None,
+    ) -> None:
         """
         Use init() to set up communication using the default values.
         Otherwise override the defaults as named arguments.
         """
         pass
 
-    def any(self):
+    def any(self) -> bool:
         """
         If there are incoming characters waiting to be read, any() will return
         True.
@@ -564,33 +595,33 @@ class _UARTSerial(object):
         """
         pass
 
-    def read(self, n):
+    def read(self, n: int) -> bytes:
         """
         Use read() to read characters.
         Use read(n) to read, at most, 'n' bytes of data.
         """
         pass
 
-    def readall(self):
+    def readall(self) -> bytes:
         """
         Use readall() to read as much data as possible.
         """
         pass
 
-    def readline(self):
+    def readline(self) -> bytes:
         """
         Use readline() to read a line that ends with a newline character.
         """
         pass
 
-    def readinto(self, buf, n):
+    def readinto(self, buf: bytes, n: int) -> int:
         """
         Use readinto(buf) to read bytes into the buffer 'buf'.
         Use readinto(buff, n) to read, at most, 'n' number of bytes into 'buf'.
         """
         pass
 
-    def write(self, buf):
+    def write(self, buf: bytes) -> int:
         """
         Use write(buf) to write the bytes in buffer 'buf' to the connected
         device.
@@ -603,8 +634,15 @@ uart = _UARTSerial()
 
 # SPI
 class _SPISerial(object):
-    def init(self, baudrate=1000000, bits=8, mode=0,
-             sclk=pin13, mosi=pin15, miso=pin14):
+    def init(
+        self,
+        baudrate: int = 1000000,
+        bits: int = 8,
+        mode: int = 0,
+        sclk: _Pin = pin13,
+        mosi: _Pin = pin15,
+        miso: _Pin = pin14,
+    ) -> None:
         """
         Set up communication. Override the defaults for baudrate, mode,
         SCLK, MOSI and MISO. The default connections are pin13 for SCLK, pin15
@@ -612,19 +650,19 @@ class _SPISerial(object):
         """
         pass
 
-    def write(self, buf):
+    def write(self, buf: bytes) -> None:
         """
         Use write(buf) to write bytes in buffer 'buf' to the connected device.
         """
         pass
 
-    def read(self, n):
+    def read(self, n: int) -> bytes:
         """
         Use read(n) to read 'n' bytes of data.
         """
         pass
 
-    def write_readinto(self, outbuf, inbuf):
+    def write_readinto(self, outbuf: bytes, inbuf: bytes) -> None:
         """
         Use write_readinto(outbuf, inbuf) to write the 'outbuf' buffer to the
         connected device and read any response into the 'inbuf' buffer. The

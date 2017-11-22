@@ -1,10 +1,22 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from microbit import pin0
+from typing import (
+    List,
+    Tuple,
+    Union,
+)
+
+from microbit import (
+    _AnaloguePin,
+    pin0,
+)
+
+_MusicalNote = str
+_Music = List[_MusicalNote]
 
 
-def set_tempo(number, bpm):
+def set_tempo(number: int, bpm: int) -> None:
     """
     Make a beat last a 'number' of ticks long and played at 'bpm' beats per
     minute.
@@ -12,7 +24,12 @@ def set_tempo(number, bpm):
     pass
 
 
-def pitch(freq, length=-1, pin=pin0, wait=True):
+def pitch(
+    freq: int,
+    length: int = -1,
+    pin: _AnaloguePin = pin0,
+    wait: bool = True,
+) -> None:
     """
     Make micro:bit play a note at 'freq' frequency for 'length' milliseconds.
     E.g. pitch(440, 1000) will play concert 'A' for 1 second.
@@ -25,7 +42,12 @@ def pitch(freq, length=-1, pin=pin0, wait=True):
     pass
 
 
-def play(music, pin=pin0, wait=True, loop=False):
+def play(
+    music: Union[_Music, _MusicalNote],
+    pin: _AnaloguePin = pin0,
+    wait: bool = True,
+    loop: bool = False,
+) -> None:
     """
     Make micro:bit play 'music' list of notes. Try out the built in music to
     see how it works. E.g. music.play(music.PUNCHLINE).
@@ -38,14 +60,14 @@ def play(music, pin=pin0, wait=True, loop=False):
     pass
 
 
-def get_tempo():
+def get_tempo() -> Tuple[int, int]:
     """
     Return the number of ticks in a beat and number of beats per minute.
     """
     pass
 
 
-def stop(pin=pin0):
+def stop(pin: _AnaloguePin = pin0) -> None:
     """
     Stops all music playback on the given pin.
     If no pin is given, pin0 is assumed.
@@ -53,7 +75,7 @@ def stop(pin=pin0):
     pass
 
 
-def reset():
+def reset() -> None:
     """
     If things go wrong, reset() the music to its default settings.
     """
