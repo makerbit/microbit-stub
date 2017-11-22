@@ -58,4 +58,3 @@ def reset():
     If things go wrong, reset() the music to its default settings.
     """
     pass
-
