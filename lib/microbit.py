@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
+from typing import List  # noqa: F401
+
 
 def panic():
     """
@@ -477,72 +479,71 @@ class Image(object):
         """
         pass
 
-
-Image.HEART = Image()
-Image.HEART_SMALL = Image()
-Image.HAPPY = Image()
-Image.SMILE = Image()
-Image.SAD = Image()
-Image.CONFUSED = Image()
-Image.ANGRY = Image()
-Image.ASLEEP = Image()
-Image.SURPRISED = Image()
-Image.SILLY = Image()
-Image.FABULOUS = Image()
-Image.MEH = Image()
-Image.YES = Image()
-Image.NO = Image()
-Image.CLOCK12 = Image()
-Image.CLOCK11 = Image()
-Image.CLOCK10 = Image()
-Image.CLOCK9 = Image()
-Image.CLOCK8 = Image()
-Image.CLOCK7 = Image()
-Image.CLOCK6 = Image()
-Image.CLOCK5 = Image()
-Image.CLOCK4 = Image()
-Image.CLOCK3 = Image()
-Image.CLOCK2 = Image()
-Image.CLOCK1 = Image()
-Image.ARROW_N = Image()
-Image.ARROW_NE = Image()
-Image.ARROW_E = Image()
-Image.ARROW_SE = Image()
-Image.ARROW_S = Image()
-Image.ARROW_SW = Image()
-Image.ARROW_W = Image()
-Image.ARROW_NW = Image()
-Image.TRIANGLE = Image()
-Image.TRIANGLE_LEFT = Image()
-Image.CHESSBOARD = Image()
-Image.DIAMOND = Image()
-Image.DIAMOND_SMALL = Image()
-Image.SQUARE = Image()
-Image.SQUARE_SMALL = Image()
-Image.RABBIT = Image()
-Image.COW = Image()
-Image.MUSIC_CROTCHET = Image()
-Image.MUSIC_QUAVER = Image()
-Image.MUSIC_QUAVERS = Image()
-Image.PITCHFORK = Image()
-Image.XMAS = Image()
-Image.PACMAN = Image()
-Image.TARGET = Image()
-Image.TSHIRT = Image()
-Image.ROLLERSKATE = Image()
-Image.DUCK = Image()
-Image.HOUSE = Image()
-Image.TORTOISE = Image()
-Image.BUTTERFLY = Image()
-Image.STICKFIGURE = Image()
-Image.GHOST = Image()
-Image.SWORD = Image()
-Image.GIRAFFE = Image()
-Image.SKULL = Image()
-Image.UMBRELLA = Image()
-Image.SNAKE = Image()
-Image.ALL_CLOCKS = Image()
-Image.ALL_ARROWS = Image()
+    HEART = None  # type: Image
+    HEART_SMALL = None  # type: Image
+    HAPPY = None  # type: Image
+    SMILE = None  # type: Image
+    SAD = None  # type: Image
+    CONFUSED = None  # type: Image
+    ANGRY = None  # type: Image
+    ASLEEP = None  # type: Image
+    SURPRISED = None  # type: Image
+    SILLY = None  # type: Image
+    FABULOUS = None  # type: Image
+    MEH = None  # type: Image
+    YES = None  # type: Image
+    NO = None  # type: Image
+    CLOCK12 = None  # type: Image
+    CLOCK11 = None  # type: Image
+    CLOCK10 = None  # type: Image
+    CLOCK9 = None  # type: Image
+    CLOCK8 = None  # type: Image
+    CLOCK7 = None  # type: Image
+    CLOCK6 = None  # type: Image
+    CLOCK5 = None  # type: Image
+    CLOCK4 = None  # type: Image
+    CLOCK3 = None  # type: Image
+    CLOCK2 = None  # type: Image
+    CLOCK1 = None  # type: Image
+    ARROW_N = None  # type: Image
+    ARROW_NE = None  # type: Image
+    ARROW_E = None  # type: Image
+    ARROW_SE = None  # type: Image
+    ARROW_S = None  # type: Image
+    ARROW_SW = None  # type: Image
+    ARROW_W = None  # type: Image
+    ARROW_NW = None  # type: Image
+    TRIANGLE = None  # type: Image
+    TRIANGLE_LEFT = None  # type: Image
+    CHESSBOARD = None  # type: Image
+    DIAMOND = None  # type: Image
+    DIAMOND_SMALL = None  # type: Image
+    SQUARE = None  # type: Image
+    SQUARE_SMALL = None  # type: Image
+    RABBIT = None  # type: Image
+    COW = None  # type: Image
+    MUSIC_CROTCHET = None  # type: Image
+    MUSIC_QUAVER = None  # type: Image
+    MUSIC_QUAVERS = None  # type: Image
+    PITCHFORK = None  # type: Image
+    XMAS = None  # type: Image
+    PACMAN = None  # type: Image
+    TARGET = None  # type: Image
+    TSHIRT = None  # type: Image
+    ROLLERSKATE = None  # type: Image
+    DUCK = None  # type: Image
+    HOUSE = None  # type: Image
+    TORTOISE = None  # type: Image
+    BUTTERFLY = None  # type: Image
+    STICKFIGURE = None  # type: Image
+    GHOST = None  # type: Image
+    SWORD = None  # type: Image
+    GIRAFFE = None  # type: Image
+    SKULL = None  # type: Image
+    UMBRELLA = None  # type: Image
+    SNAKE = None  # type: Image
+    ALL_CLOCKS = None  # type: List[Image]
+    ALL_ARROWS = None  # type: List[Image]
 
 
 # uart
